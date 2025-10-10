@@ -2,11 +2,29 @@
 
 Este repositório contém o código-fonte da nova versão do site da 2IBCA, construído com uma arquitetura moderna que utiliza React para o frontend e Django (REST Framework) para o backend.
 
+---
+
+## ✅ Progresso da Migração
+
+- [x] **Página Inicial (`/`)** - Concluída
+- [x] **Página de História (`/historia`)** - Concluída
+- [ ] Página de Liderança (`/lideranca`)
+- [ ] Página de Departamentos (`/departamentos`)
+- [ ] Página da Agenda (`/agenda`)
+- [ ] Páginas de Congregações, EBD, etc.
+
+---
+
 ## ✨ Tecnologias Principais
 
-* **Frontend:** React, Vite, Tailwind CSS, React Router
-* **Backend:** Python, Django, Django REST Framework
-* **Banco de Dados:** SQLite (desenvolvimento)
+* **Frontend:**
+    * **Framework:** React (com Vite)
+    * **Estilização:** Tailwind CSS
+    * **Roteamento:** React Router
+    * **Componentes:** React Slick (para carrosséis)
+* **Backend:**
+    * **Framework:** Python com Django & Django REST Framework
+    * **Banco de Dados:** SQLite (desenvolvimento)
 
 ---
 
@@ -39,38 +57,30 @@ O backend requer um ambiente virtual isolado para gerenciar suas dependências.
     cd igreja_back
     ```
 
-2.  **Crie o ambiente virtual:**
-    *Este passo cria uma pasta `venv` que conterá todas as bibliotecas Python específicas para este projeto, evitando conflitos com outros projetos.*
+2.  **Crie e ative o ambiente virtual:**
+    *Este passo cria uma pasta `venv` que conterá todas as bibliotecas Python específicas para este projeto.*
     ```bash
+    # Criar o ambiente
     python -m venv venv
+    
+    # Ativar o ambiente (Windows - PowerShell)
+    .\venv\Scripts\activate
     ```
 
-3.  **Ative o ambiente virtual:**
-    * **No Windows (PowerShell):**
-        ```powershell
-        .\venv\Scripts\activate
-        ```
-    * **No macOS/Linux:**
-        ```bash
-        source venv/bin/activate
-        ```
-
-4.  **Instale as dependências Python:**
-    *O arquivo `requirements.txt` contém a lista exata de pacotes necessários.*
+3.  **Instale as dependências Python:**
     ```bash
     pip install -r requirements.txt
     ```
 
-5.  **Crie as tabelas no banco de dados:**
+4.  **Crie as tabelas no banco de dados:**
     ```bash
     python manage.py migrate
     ```
 
-6.  **Crie um superusuário** para acessar o painel de administração:
+5.  **Crie um superusuário** para acessar o painel de administração:
     ```bash
     python manage.py createsuperuser
     ```
-    *Siga as instruções para criar seu usuário e senha.*
 
 ### 3. Configuração do Frontend (React)
 
@@ -82,7 +92,6 @@ O backend requer um ambiente virtual isolado para gerenciar suas dependências.
     *(A partir da pasta raiz `2ibca-react-django`)*
 
 3.  **Instale as dependências JavaScript:**
-    *O `package.json` gerencia todos os pacotes necessários para o React.*
     ```bash
     npm install
     ```
@@ -115,10 +124,3 @@ cd 2ibca
 npm run dev
 ```
 > ℹ️ O frontend estará disponível em `http://localhost:5173/`. **É este o endereço que você deve abrir no seu navegador para ver o site.**
-
----
-
-## 🌐 Acessos Importantes
-
-* **Site (Visualização):** `http://localhost:5173/`
-* **Painel de Administração (Conteúdo):** `http://127.0.0.1:8000/admin/'
