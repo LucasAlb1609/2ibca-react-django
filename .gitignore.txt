@@ -5,6 +5,7 @@ __pycache__/
 /igreja_back/db.sqlite3
 /igreja_back/media/
 /igreja_back/staticfiles/
+.env
 
 # Arquivos e pastas do Node.js / React
 /2ibca/node_modules/
