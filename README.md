@@ -44,7 +44,7 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento local.
 ### 1. Clone o Repositório
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO_AQUI>
+git clone https://github.com/LucasAlb1609/2ibca-react-django
 cd 2ibca-react-django
 ```
 
