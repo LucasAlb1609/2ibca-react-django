@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import HistoriaPage from './pages/HistoriaPage';
+import LiderancaPage from './components/LiderancaPage';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/historia" element={<HistoriaPage />} /> {/* 2. Adicione a nova rota */}
+          <Route path="/historia" element={<HistoriaPage />} />
+          <Route path="/lideranca" element={<LiderancaPage />} />
           {/* Outras rotas virão aqui no futuro */}
         </Routes>
       </main>

@@ -1,11 +1,12 @@
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import render
 from .models import ConfiguracaoSite, Departamento, SecaoLideranca, DiaSemana, EventoEspecial, Devocional
 from django.conf import settings
-from .serializers import ConfiguracaoSiteSerializer, DevocionalSerializer
+from .serializers import ConfiguracaoSiteSerializer, DevocionalSerializer, SecaoLiderancaSerializer
 
-# --- VIEWS DA API (VERSÃO CORRETA) ---
+# --- VIEWS DA API ---
 
 class ConfiguracaoSiteAPIView(APIView):
     """
@@ -30,6 +31,13 @@ class DevocionalRecenteAPIView(APIView):
             serializer = DevocionalSerializer(devocional, context={'request': request})
             return Response(serializer.data)
         return Response({})
+    
+class LiderancaAPIView(generics.ListAPIView):
+    """
+    API View para listar todas as seções de liderança com as pessoas aninhadas.
+    """
+    queryset = SecaoLideranca.objects.prefetch_related('pessoas').all()
+    serializer_class = SecaoLiderancaSerializer    
 
 # --- VIEWS ANTIGAS (PARA RENDERIZAÇÃO DE TEMPLATES) ---
 # Mantidas aqui para referência, mas não são usadas pela API do React

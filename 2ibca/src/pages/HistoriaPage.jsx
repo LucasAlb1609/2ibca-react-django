@@ -36,15 +36,18 @@ const pilaresMissao = [
 ]
 
 function HistoriaPage() {
-  // Configurações do carrossel, baseadas no seu historia.js
-  const settingsPastores = {
+ 
+  const [pastoresRef, isPastoresVisible] = useOnScreen({ threshold: 0.1 });
+  const [memorialRef, isMemorialVisible] = useOnScreen({ threshold: 0.1 });
+    const settingsPastores = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    autoplay: isPastoresVisible, // Autoplay condicional
+    autoplaySpeed: 4000,      // 4 segundos
+    pauseOnHover: true,         // Pausa no hover
     responsive: [
       { breakpoint: 992, settings: { slidesToShow: 2 } },
       { breakpoint: 768, settings: { slidesToShow: 1 } },
@@ -55,7 +58,7 @@ function HistoriaPage() {
       ...settingsPastores,
       slidesToShow: 4,
       arrows: false,
-      autoplaySpeed: 2500,
+      autoplaySpeed: isMemorialVisible, // Autoplay condicional
       responsive: [
           { breakpoint: 992, settings: { slidesToShow: 3 } },
           { breakpoint: 768, settings: { slidesToShow: 2 } },

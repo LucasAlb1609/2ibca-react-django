@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ConfiguracaoSite, Devocional
+from .models import ConfiguracaoSite, Devocional, SecaoLideranca, Pessoa
 
 class ConfiguracaoSiteSerializer(serializers.ModelSerializer):
     imagem_url = serializers.SerializerMethodField()
@@ -30,3 +30,28 @@ class DevocionalSerializer(serializers.ModelSerializer):
         if obj.imagem and request:
             return request.build_absolute_uri(obj.imagem.url)
         return None
+    
+
+class PessoaSerializer(serializers.ModelSerializer):
+    # Serializer para o modelo 'Pessoa'
+    foto = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Pessoa
+        fields = ['id', 'nome', 'cargo', 'descricao', 'foto']
+    
+    def get_foto(self, obj):
+        request = self.context.get('request')
+        if obj.foto and request:
+            return request.build_absolute_uri(obj.foto.url)
+        return None
+
+class SecaoLiderancaSerializer(serializers.ModelSerializer):
+    # Serializer para o modelo 'SecaoLideranca'
+    # 2. Aninhamos o PessoaSerializer aqui
+    # 'pessoas' é o related_name que definimos no models.py
+    pessoas = PessoaSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = SecaoLideranca
+        fields = ['id', 'titulo', 'descricao', 'pessoas']
