@@ -1,8 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
+import useOnScreen from '../hooks/useOnScreen';
+import { NextArrow, PrevArrow } from '../components/CarouselControls';
 
-// --- DADOS FIXOS (EXTRAÍDOS DO SEU HISTORIA.HTML) ---
-
+// --- DADOS FIXOS ---
 const pastores = [
   { nome: 'Pastor Severino Belo', periodo: '1943 - aprox. 3 meses', desc: 'Pastor Fundador', foto: '/fotos/logo.jpg' },
   { nome: 'Pastor Manoel Machado', periodo: '1944 a 1953', desc: 'Adm. Construção do 1º Templo', foto: '/fotos/logo.jpg' },
@@ -12,9 +13,9 @@ const pastores = [
   { nome: 'Pastor Leandro Dias', periodo: '1971 - 11 meses', desc: 'Pastor', foto: '/fotos/logo.jpg' },
   { nome: 'Pastor Pedro Andrade', periodo: 'Interino (1971) e Efetivo (1975)', desc: 'Expansão do Evangelho', foto: '/fotos/logo.jpg' },
   { nome: 'Pastor Carlos Pezzotti', periodo: '1972 a 1974', desc: 'Pastor', foto: '/fotos/logo.jpg' },
-  { nome: 'Pastor João Gomes', periodo: 'Desde 1999', desc: 'Evangelismo e Discipulado', foto: '/fotos/joao.jpg' },
-  { nome: 'Pastor Elcias R. Martins', periodo: 'A partir de 2008', desc: 'Vice-presidente', foto: '/fotos/logo.jpg' },
-  { nome: 'Pastor Romildo S. de Melo', periodo: '2018', desc: 'Vice-presidente', foto: '/fotos/romildo.jpg' },
+  { nome: 'Pastor João Gomes', periodo: 'Auxiliar em 1999 e presidente desde 2008', desc: 'Evangelismo e Discipulado', foto: '/fotos/joao.jpg' },
+  { nome: 'Pastor Elcias R. Martins', periodo: 'De 2008 a 2017', desc: 'Vice-presidente', foto: '/fotos/logo.jpg' },
+  { nome: 'Pastor Romildo S. de Melo', periodo: 'Desde 2018', desc: 'Vice-presidente', foto: '/fotos/romildo.jpg' },
 ];
 
 const memorial = [
@@ -36,18 +37,25 @@ const pilaresMissao = [
 ]
 
 function HistoriaPage() {
- 
   const [pastoresRef, isPastoresVisible] = useOnScreen({ threshold: 0.1 });
   const [memorialRef, isMemorialVisible] = useOnScreen({ threshold: 0.1 });
-    const settingsPastores = {
+
+  const baseCarouselSettings = {
     dots: true,
     infinite: true,
     speed: 500,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
+  const settingsPastores = {
+    ...baseCarouselSettings,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: isPastoresVisible, // Autoplay condicional
-    autoplaySpeed: 4000,      // 4 segundos
-    pauseOnHover: true,         // Pausa no hover
+    autoplay: isPastoresVisible,
+    arrows: true,
     responsive: [
       { breakpoint: 992, settings: { slidesToShow: 2 } },
       { breakpoint: 768, settings: { slidesToShow: 1 } },
@@ -55,17 +63,17 @@ function HistoriaPage() {
   };
 
   const settingsMemorial = {
-      ...settingsPastores,
+      ...baseCarouselSettings,
       slidesToShow: 4,
       arrows: false,
-      autoplaySpeed: isMemorialVisible, // Autoplay condicional
+      autoplay: isMemorialVisible,
       responsive: [
           { breakpoint: 992, settings: { slidesToShow: 3 } },
           { breakpoint: 768, settings: { slidesToShow: 2 } },
           { breakpoint: 576, settings: { slidesToShow: 1 } },
       ]
   };
-
+  
   return (
     <div className="font-sans not-italic">
       {/* Seção Principal */}
@@ -106,7 +114,7 @@ function HistoriaPage() {
         </div>
       </section>
       
-      {/* --- SEÇÃO ADICIONADA: PERFIL DA IGREJA --- */}
+      {/* Seção Perfil da Igreja */}
       <section className="py-20 bg-[#f6efdf]">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center -mx-4">
@@ -143,8 +151,8 @@ function HistoriaPage() {
         </div>
       </section>
 
-      {/* Seção Pastorado */}
-      <section className="py-20 bg-[#f6efdf]">
+      {/* --- ALTERAÇÃO AQUI: ANEXANDO A REF --- */}
+      <section ref={pastoresRef} className="py-20 bg-[#f6efdf]">
         <div className="container mx-auto px-4">
             <div className="text-right mb-10">
                 <h2 className="text-4xl font-semibold italic">Pastorado</h2>
@@ -165,8 +173,8 @@ function HistoriaPage() {
         </div>
       </section>
       
-      {/* --- SEÇÃO ADICIONADA: MEMORIAL --- */}
-      <section className="py-20 bg-[#0caaed] text-white">
+      {/* --- ALTERAÇÃO AQUI: ANEXANDO A REF --- */}
+      <section ref={memorialRef} className="py-20 bg-[#0caaed] text-white">
         <div className="container mx-auto px-4">
             <div className="text-left mb-10 max-w-3xl">
                 <h2 className="text-4xl font-semibold italic">Memorial de 13 de setembro de 2008</h2>

@@ -160,10 +160,6 @@ class DiaSemana(models.Model):
     
     nome = models.IntegerField(choices=DIAS, unique=True, verbose_name="Dia da Semana")
     resumo = models.CharField(max_length=100, verbose_name="Resumo (ex: Dia de celebração)")
-    icone = models.CharField(
-        max_length=50, 
-        verbose_name="Ícone"
-    )
 
     def __str__(self):
         return self.get_nome_display()
@@ -201,4 +197,33 @@ class EventoEspecial(models.Model):
     class Meta:
         verbose_name = "Evento Especial"
         verbose_name_plural = "Eventos Especiais"
+        ordering = ['ordem']
+
+class Pastor(models.Model):
+    nome = models.CharField(max_length=200, verbose_name="Nome do Pastor")
+    periodo = models.CharField(max_length=100, verbose_name="Período no Pastorado")
+    descricao_curta = models.CharField(max_length=255, blank=True, verbose_name="Descrição Curta")
+    foto = models.ImageField(upload_to='pastores/', blank=True, null=True, verbose_name="Foto")
+    ordem = models.PositiveIntegerField(default=0, help_text="Define a ordem de exibição (menor número aparece primeiro).")
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Pastor (Histórico)"
+        verbose_name_plural = "Pastores (Histórico)"
+        ordering = ['ordem']
+
+
+class Memorial(models.Model):
+    nome = models.CharField(max_length=200, verbose_name="Nome da Pessoa")
+    foto = models.ImageField(upload_to='memorial/', blank=True, null=True, verbose_name="Foto")
+    ordem = models.PositiveIntegerField(default=0, help_text="Define a ordem de exibição (menor número aparece primeiro).")
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Pessoa do Memorial"
+        verbose_name_plural = "Pessoas do Memorial"
         ordering = ['ordem']

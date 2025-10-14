@@ -3,7 +3,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import HistoriaPage from './pages/HistoriaPage';
-import LiderancaPage from './components/LiderancaPage';
+import LiderancaPage from './pages/LiderancaPage';
+import DepartamentosPage from './pages/DepartamentosPage';
+import AgendaPage from './pages/AgendaPage';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/historia" element={<HistoriaPage />} />
           <Route path="/lideranca" element={<LiderancaPage />} />
+          <Route path="/departamentos" element={<DepartamentosPage/>} />
+          <Route path="/agenda" element={<AgendaPage/>} />
           {/* Outras rotas virão aqui no futuro */}
         </Routes>
       </main>

@@ -14,3 +14,9 @@ body {
 strong, b, a, button {
   @apply not-italic;
 }
+
+/* --- correção das setas slick carrossel --- */
+.slick-prev::before,
+.slick-next::before {
+  content: '' !important;
+}
