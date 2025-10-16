@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function Footer() {
+  const { user } = useAuth();
   const versiculo = `² Levai as cargas uns dos outros, e assim cumprireis a lei de Cristo.
     ³ Porque, se alguém cuida ser alguma coisa, não sendo nada, engana-se a si mesmo.
     ⁴ Mas prove cada um a sua própria obra, e terá glória só em si mesmo, e não noutro.
@@ -64,8 +66,13 @@ function Footer() {
             <div className="w-full sm:w-1/2 md:w-auto">
               <h4 className="font-bold text-base mb-3">Acesso</h4>
               <ul className="space-y-2 text-base">
-                <li><Link to="/login" className="hover:text-blue-600 transition-colors">Login / Acesso Membros</Link></li>
-                <li><a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Painel de Administrador</a></li>
+                {user ? (
+                  // Se o usuário estiver logado, mostra o link para o Dashboard
+                  <li><Link to="/dashboard" className="hover:text-blue-600 transition-colors">Menu do Usuário</Link></li>
+                ) : (
+                  // Se não, mostra o link de Login
+                  <li><Link to="/login" className="hover:text-blue-600 transition-colors">Login / Acesso Membros</Link></li>
+                )}
               </ul>
             </div>
           </div>

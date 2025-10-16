@@ -8,7 +8,6 @@ function PaginaDashboard() {
   const [stats, setStats] = useState(null);
   const [loadingStats, setLoadingStats] = useState(true);
 
-  // Efeito para buscar as estatísticas, SE o usuário for secretário
   useEffect(() => {
     if (user?.papel === 'secretario') {
       const fetchStats = async () => {
@@ -17,7 +16,6 @@ function PaginaDashboard() {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              // Envia o token de acesso para provar que estamos autenticados
               'Authorization': `Bearer ${authTokens.access}`
             }
           });
@@ -36,11 +34,10 @@ function PaginaDashboard() {
     } else {
       setLoadingStats(false);
     }
-  }, [user, authTokens]); // Roda o efeito se o usuário ou os tokens mudarem
+  }, [user, authTokens]);
 
-  // Componente para o card de estatísticas do Secretário
   const CardEstatisticas = () => (
-    <div className="bg-white rounded-lg shadow-md h-full">
+        <div className="bg-white rounded-lg shadow-md h-full">
       <div className="bg-blue-100 text-blue-800 font-bold p-4 rounded-t-lg">
         Estatísticas
       </div>
@@ -69,14 +66,13 @@ function PaginaDashboard() {
     </div>
   );
 
-  // Componente para o card de gestão do Secretário
   const CardGestaoUsuarios = () => (
      <div className="bg-white rounded-lg shadow-md h-full">
       <div className="bg-yellow-100 text-yellow-800 font-bold p-4 rounded-t-lg">
         Gestão de Usuários
       </div>
       <div className="p-6">
-        <p className="text-gray-600 mb-4">Gerencie cadastros e aprovações de usuários.</p>
+        <p className="text-gray-600 mb-4">Gerencie cadastros, aprovações e perfis de usuários.</p>
         <div className="space-y-4">
           <Link to="/admin/usuarios-pendentes" className="block w-full text-center bg-yellow-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors">
             Usuários Pendentes
@@ -87,13 +83,24 @@ function PaginaDashboard() {
           <Link to="/admin/todos-usuarios" className="block w-full text-center bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">
             Todos os Usuários
           </Link>
+          {/* 1. O link só é renderizado se o usuário for superuser */}
+          {user?.is_superuser && (
+            <a 
+              href="http://127.0.0.1:8000/admin/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block w-full text-center bg-gray-700 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-800 transition-colors mt-4"
+            >
+              Painel Admin (Django)
+            </a>
+          )}
         </div>
       </div>
     </div>
   );
 
   return (
-    <div className="container mx-auto p-8 font-sans not-italic bg-gray-50 min-h-full">
+        <div className="container mx-auto p-8 font-sans not-italic bg-gray-50 min-h-full">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h1>
       
       {/* Mensagem de Boas-vindas */}

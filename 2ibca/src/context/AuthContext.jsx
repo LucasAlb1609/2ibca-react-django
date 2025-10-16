@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('authTokens');
     setAuthTokens(null);
     setUser(null);
-    navigate('/login');
+    navigate('/');
   };
 
   // 3. Efeito que roda APENAS UMA VEZ para verificar se há um token válido no localStorage

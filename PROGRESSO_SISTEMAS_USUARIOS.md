@@ -39,34 +39,30 @@ Este documento acompanha a migração e implementação do sistema de gestão de
 ### Fase 2: Dashboards e Perfis de Usuário
 
 - ✅ **Backend: Criar API para Dashboard do Secretário**
-  - ✅ Criar endpoint protegido `/api/admin/dashboard-stats/` que retorna estatísticas.
-
 - ✅ **Frontend: Construir Dashboard Inteligente**
-  - ✅ A página `/dashboard` renderiza conteúdo diferente com base no papel do usuário (Secretário vs. outros).
-  - ✅ Dashboard do Secretário busca e exibe as estatísticas da API.
-
-- 🔲 **Backend: Criar API para Perfil do Usuário**
-  - 🔲 Criar endpoint `/api/users/me/` para retornar os dados do usuário logado.
-  - 🔲 Criar endpoint para o usuário editar seu próprio perfil.
-
-- 🔲 **Frontend: Construir Páginas de Perfil**
-  - 🔲 Criar a página `/perfil` para o usuário visualizar seus dados.
-  - 🔲 Criar a página `/perfil/editar` com o formulário de edição.
+- ✅ **Backend: Criar API para Perfil do Usuário**
+  - ✅ Criar endpoint `/api/users/me/` para retornar os dados do usuário logado.
+  - ✅ Criar endpoint para o usuário editar seu próprio perfil (`PATCH /api/users/me/`).
+- ✅ **Frontend: Construir Páginas de Perfil**
+  - ✅ Criar a página `/perfil` para o usuário visualizar seus dados.
+  - ✅ Criar a página `/perfil/editar` com o formulário de edição completo.
 
 ---
 
 ### Fase 3: Gestão de Secretário (Admin no Frontend)
 
-- 🔲 **Backend: Criar APIs de Gestão**
-  - 🔲 Endpoint para listar todos os usuários (`/api/admin/users/`).
-  - 🔲 Endpoint para listar apenas usuários pendentes (`/api/admin/pending-users/`).
-  - 🔲 Endpoints de ação para aprovar, rejeitar e alterar o papel de um usuário.
-  - 🔲 Endpoints para criar, editar e excluir usuários (CRUD completo).
-
-- 🔲 **Frontend: Construir Módulo de Administração**
-  - 🔲 Criar a página `/admin/todos-usuarios` com uma tabela de todos os usuários.
-  - 🔲 Criar a página `/admin/usuarios-pendentes` com as ações de aprovação/rejeição.
-  - 🔲 Criar o formulário para um secretário criar/editar um usuário.
+- ✅ **Backend: Criar APIs de Gestão**
+  - ✅ Endpoint para listar todos os usuários com filtros e busca (`GET /api/admin/users/`).
+  - ✅ Endpoint para secretários criarem novos usuários (`POST /api/admin/users/`).
+  - ✅ Endpoint para listar apenas usuários pendentes (`/api/admin/pending-users/`).
+  - ✅ Endpoints de ação para aprovar (`POST`) e rejeitar (`DELETE`) um usuário.
+  - ✅ Endpoint para secretários visualizarem, editarem e excluírem usuários (`GET`, `PATCH`, `DELETE` em `/api/admin/users/<id>/`).
+- ✅ **Frontend: Construir Módulo de Administração**
+  - ✅ Criar a página `/admin/todos-usuarios` com tabela, filtros, busca e ações.
+  - ✅ Criar a página `/admin/usuarios-pendentes` com as ações de aprovação/rejeição e modal de detalhes.
+  - ✅ Criar o formulário em `/admin/criar-usuario` para um secretário criar um novo usuário.
+- 🔄 **Funcionalidades de Edição (Em Progresso):**
+  - [ ] Frontend: Construir a página para um secretário editar o perfil de outro usuário.
 
 ---
 

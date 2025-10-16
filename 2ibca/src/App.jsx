@@ -13,6 +13,11 @@ import RegistroPage from './pages/RegistroPage';
 import RegistroSucessoPage from './pages/RegistroSucessoPage'; 
 import PaginaLogin from './pages/PaginaLogin';
 import PaginaDashboard from './pages/PaginaDashboard';
+import PaginaPerfil from './pages/PaginaPerfil';
+import PaginaEditarPerfil from './pages/PaginaEditarPerfil';
+import PaginaListaUsuarios from './pages/PaginaListaUsuarios';
+import PaginaUsuariosPendentes from './pages/PaginaUsuariosPendentes';
+import PaginaCriarUsuario from './pages/PaginaCriarUsuario';
 
 function App() {
   return (
@@ -31,14 +36,15 @@ function App() {
           <Route path="/login" element={<PaginaLogin />} />
           {/* Outras rotas virão aqui no futuro */}
 
-          {/* Rotas Protegidas (adicionaremos a proteção depois) */}
-          <Route 
-            path="/dashboard" 
-            element={
-              <RotaProtegida>
-                <PaginaDashboard />
-              </RotaProtegida>  
-            } />
+          {/* Rotas que requerem autenticação */}
+          <Route path="/dashboard" element={<RotaProtegida><PaginaDashboard /></RotaProtegida>} />
+          <Route path="/perfil" element={<RotaProtegida><PaginaPerfil /></RotaProtegida>} />
+          <Route path="/perfil/editar" element={<RotaProtegida><PaginaEditarPerfil /></RotaProtegida>} />
+          <Route path="/admin/todos-usuarios" element={<RotaProtegida><PaginaListaUsuarios /></RotaProtegida>} />
+          <Route path="/admin/todos-usuarios" element={<RotaProtegida><PaginaListaUsuarios /></RotaProtegida>} />
+          <Route path="/admin/usuarios-pendentes" element={<RotaProtegida><PaginaUsuariosPendentes /></RotaProtegida>} />
+          <Route path="/admin/criar-usuario" element={<RotaProtegida><PaginaCriarUsuario /></RotaProtegida>} />
+
         </Routes>
       </main>
       <Footer />
