@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     # APIs
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
     # Meus apps
     'home',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,11 @@ CORS_ALLOWED_ORIGINS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTH_USER_MODEL = 'usuarios.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}    

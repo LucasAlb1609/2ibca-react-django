@@ -1,15 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   const versiculo = `² Levai as cargas uns dos outros, e assim cumprireis a lei de Cristo.
     ³ Porque, se alguém cuida ser alguma coisa, não sendo nada, engana-se a si mesmo.
     ⁴ Mas prove cada um a sua própria obra, e terá glória só em si mesmo, e não noutro.
-    ⁵ Porque cada qual levará a sua própria carga.
-    ⁶ E o que é instruído na palavra reparta de todos os seus bens com aquele que o instrui.
-    ⁷ Não erreis: Deus não se deixa escarnecer; porque tudo o que o homem semear, isso também ceifará.
-    ⁸ Porque o que semeia na sua carne, da carne ceifará a corrupção; mas o que semeia no Espírito, do Espírito ceifará a vida eterna.
-    ⁹ E não nos cansemos de fazer bem, porque a seu tempo ceifaremos, se não houvermos desfalecido.
-    ¹⁰ Então, enquanto temos tempo, façamos bem a todos, mas principalmente aos domésticos da fé.`;
+    ⁵ Porque cada qual levará a sua própria carga.`;
 
   return (
     <>
@@ -67,9 +63,8 @@ function Footer() {
             {/* Coluna de Outros Links */}
             <div className="w-full sm:w-1/2 md:w-auto">
               <h4 className="font-bold text-base mb-3">Acesso</h4>
-               {/* --- ALTERAÇÃO AQUI: de 'text-sm' para 'text-base' --- */}
               <ul className="space-y-2 text-base">
-                <li><a href="#" className="hover:text-blue-600 transition-colors">Login de Membros</a></li>
+                <li><Link to="/login" className="hover:text-blue-600 transition-colors">Login / Acesso Membros</Link></li>
                 <li><a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors">Painel de Administrador</a></li>
               </ul>
             </div>
