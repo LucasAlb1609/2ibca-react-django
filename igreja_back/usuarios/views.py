@@ -175,10 +175,17 @@ class AdminRejectUserView(APIView):
         user_to_reject.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-class AdminUserDetailView(generics.RetrieveAPIView):
+class AdminUserDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
-    View de API para um secretário ver os detalhes completos de qualquer usuário.
+    View de API para um secretário:
+    - LER (GET) os detalhes completos de um usuário.
+    - ATUALIZAR (PUT/PATCH) os dados de um usuário.
+    - EXCLUIR (DELETE) um usuário.
     """
     queryset = User.objects.all()
-    serializer_class = UserProfileSerializer # Reutilizamos o serializer de perfil completo
     permission_classes = [IsAuthenticated, IsSecretario]
+
+    def get_serializer_class(self):
+        if self.request.method in ['PUT', 'PATCH']:
+            return AdminUserUpdateSerializer
+        return UserProfileSerializer

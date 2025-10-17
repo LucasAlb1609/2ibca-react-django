@@ -9,6 +9,7 @@ import HistoriaPage from './pages/HistoriaPage';
 import LiderancaPage from './pages/LiderancaPage';
 import DepartamentosPage from './pages/DepartamentosPage';
 import AgendaPage from './pages/AgendaPage';
+import PaginaDevocionais from './pages/PaginaDevocionais';
 import RegistroPage from './pages/RegistroPage'; 
 import RegistroSucessoPage from './pages/RegistroSucessoPage'; 
 import PaginaLogin from './pages/PaginaLogin';
@@ -18,6 +19,8 @@ import PaginaEditarPerfil from './pages/PaginaEditarPerfil';
 import PaginaListaUsuarios from './pages/PaginaListaUsuarios';
 import PaginaUsuariosPendentes from './pages/PaginaUsuariosPendentes';
 import PaginaCriarUsuario from './pages/PaginaCriarUsuario';
+import PaginaVerUsuario from './pages/PaginaVerUsuario';
+import PaginaEditarUsuario from './pages/PaginaEditarUsuario';
 
 function App() {
   return (
@@ -26,25 +29,30 @@ function App() {
       <ScrollToTop />
       <main className="flex-grow">
         <Routes>
+          {/* Rotas Públicas */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/devocionais" element={<PaginaDevocionais />} />
           <Route path="/historia" element={<HistoriaPage />} />
           <Route path="/lideranca" element={<LiderancaPage />} />
-          <Route path="/departamentos" element={<DepartamentosPage/>} />
-          <Route path="/agenda" element={<AgendaPage/>} />
+          <Route path="/departamentos" element={<DepartamentosPage />} />
+          <Route path="/agenda" element={<AgendaPage />} />
           <Route path="/cadastro" element={<RegistroPage />} />
           <Route path="/cadastro-sucesso" element={<RegistroSucessoPage />} />
           <Route path="/login" element={<PaginaLogin />} />
-          {/* Outras rotas virão aqui no futuro */}
 
-          {/* Rotas que requerem autenticação */}
+          {/* Rotas Protegidas para Usuários Logados */}
           <Route path="/dashboard" element={<RotaProtegida><PaginaDashboard /></RotaProtegida>} />
           <Route path="/perfil" element={<RotaProtegida><PaginaPerfil /></RotaProtegida>} />
           <Route path="/perfil/editar" element={<RotaProtegida><PaginaEditarPerfil /></RotaProtegida>} />
-          <Route path="/admin/todos-usuarios" element={<RotaProtegida><PaginaListaUsuarios /></RotaProtegida>} />
+
+          {/* Rotas de Administração */}
           <Route path="/admin/todos-usuarios" element={<RotaProtegida><PaginaListaUsuarios /></RotaProtegida>} />
           <Route path="/admin/usuarios-pendentes" element={<RotaProtegida><PaginaUsuariosPendentes /></RotaProtegida>} />
           <Route path="/admin/criar-usuario" element={<RotaProtegida><PaginaCriarUsuario /></RotaProtegida>} />
-
+          <Route path="/admin/ver-usuario/:userId" element={<RotaProtegida><PaginaVerUsuario /></RotaProtegida>} />
+          <Route path="/admin/editar-usuario/:userId" element={<RotaProtegida><PaginaEditarUsuario /></RotaProtegida>} />
+        
+        
         </Routes>
       </main>
       <Footer />

@@ -51,18 +51,18 @@ Este documento acompanha a migração e implementação do sistema de gestão de
 
 ### Fase 3: Gestão de Secretário (Admin no Frontend)
 
-- ✅ **Backend: Criar APIs de Gestão**
+- ✅ **Backend: Criar APIs de Gestão (CRUD Completo)**
   - ✅ Endpoint para listar todos os usuários com filtros e busca (`GET /api/admin/users/`).
   - ✅ Endpoint para secretários criarem novos usuários (`POST /api/admin/users/`).
   - ✅ Endpoint para listar apenas usuários pendentes (`/api/admin/pending-users/`).
   - ✅ Endpoints de ação para aprovar (`POST`) e rejeitar (`DELETE`) um usuário.
   - ✅ Endpoint para secretários visualizarem, editarem e excluírem usuários (`GET`, `PATCH`, `DELETE` em `/api/admin/users/<id>/`).
-- ✅ **Frontend: Construir Módulo de Administração**
+- ✅ **Frontend: Construir Módulo de Administração (CRUD Completo)**
   - ✅ Criar a página `/admin/todos-usuarios` com tabela, filtros, busca e ações.
   - ✅ Criar a página `/admin/usuarios-pendentes` com as ações de aprovação/rejeição e modal de detalhes.
   - ✅ Criar o formulário em `/admin/criar-usuario` para um secretário criar um novo usuário.
-- 🔄 **Funcionalidades de Edição (Em Progresso):**
-  - [ ] Frontend: Construir a página para um secretário editar o perfil de outro usuário.
+  - ✅ Criar a página `/admin/ver-usuario/:userId` para o secretário visualizar o perfil de outro usuário.
+  - ✅ Criar a página `/admin/editar-usuario/:userId` para o secretário editar o perfil de outro usuário.
 
 ---
 

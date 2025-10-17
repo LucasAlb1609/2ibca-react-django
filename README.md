@@ -4,6 +4,11 @@ Este repositório contém o código-fonte da nova versão do site da **2ª Igrej
 
 ---
 
+**Legenda:**
+- ✅ **Concluído:** Funcionalidade implementada e testada.
+- 🔄 **Em Progresso:** Em desenvolvimento ativo.
+- 🔲 **Pendente:** Próximas etapas a serem iniciadas.
+
 ## ✅ Progresso da Migração
 
 ### Páginas Públicas
@@ -28,9 +33,9 @@ Este repositório contém o código-fonte da nova versão do site da **2ª Igrej
   - [x] Backend: Criar API para visualização de perfil (`/api/users/me/`).
   - [x] Frontend: Construir a página de visualização de Perfil (`/perfil`).
 - 🔲 **Funcionalidades Futuras:**
-  - [ ] Edição de Perfil pelo próprio usuário.
-  - [ ] Módulo completo de Gestão de Usuários para Secretários (CRUD).
-  - [ ] Sistema de Geração de Documentos.
+  - [x] Edição de Perfil pelo próprio usuário.
+  - [x] Módulo completo de Gestão de Usuários para Secretários (CRUD).
+  - [x] Sistema de Geração de Documentos.
 
 ---
 
